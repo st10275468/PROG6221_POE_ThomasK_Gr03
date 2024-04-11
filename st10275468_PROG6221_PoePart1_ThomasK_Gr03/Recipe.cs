@@ -225,6 +225,16 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             if (clear == "YES")
             {
                 Console.Clear();
+
+                ingredients.Clear();
+                ingredientQuantity = new double[0];
+                ingredientQuantityBackup = new double[0];
+                numIngredients = 0;
+                 stepDescription = new string[0];
+                ingredient = null;
+                 unit = null;
+                steps = 0;
+
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Recipe data has been deleted successfully");
