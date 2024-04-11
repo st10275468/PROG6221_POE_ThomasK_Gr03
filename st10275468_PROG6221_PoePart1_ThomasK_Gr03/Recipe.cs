@@ -196,5 +196,12 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             }
 
         }
+        public void ResetQuantity()
+        {
+            for (int i = 0; i < numIngredients; i++)
+            {
+
+            }
+        }
     }
 }
