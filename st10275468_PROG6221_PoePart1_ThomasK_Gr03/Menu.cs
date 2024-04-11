@@ -35,8 +35,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             }
             else if (choice == "2")
             {
-                Console.Clear();
-                Console.WriteLine("----Display a recipe----");
+                DisplayRecipe();
+               
             }
             else if (choice == "3")
             {

@@ -8,6 +8,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 {
     internal class Recipe
     {
+        
         int numIngredients;
         Dictionary<double, string> ingredientQuantUnit = new Dictionary<double, string>();
         string[] ingredients;
@@ -75,8 +76,28 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         }
         public void DisplayRecipe()
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("-----Recipe details-----");
+            Console.WriteLine();
+            Console.WriteLine("Ingredients: ");
+            Console.WriteLine();
 
-        }
+            for (int i = 0; i < numIngredients; i++)
+            {
+                KeyValuePair<double, string> item = ingredientQuantUnit.ElementAt(i);
+                Console.WriteLine("Ingredient {0}: {1} {2} of {3}", i+1, item.Key, item.Value, ingredients[i]);
+
+            }
+            
+
+
+           
+               
+            //700ml of milk
+            }
+
+        
 
         public void ScaleRecipe()
         {
