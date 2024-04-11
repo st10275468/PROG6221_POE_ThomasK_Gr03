@@ -10,7 +10,17 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
     {
         static void Main(string[] args)
         {
-
+            Run();
+        }
+        static void Run()
+        {
+            
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Clear();
+           
+            Menu menu = new Menu();
+            menu.menu();
         }
 
     }
