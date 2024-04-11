@@ -30,6 +30,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             if (choice == "1")
             {
                 GetRecipeDetails();
+                menu();
                 
             }
             else if (choice == "2")
