@@ -57,7 +57,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             else if (choice == "5")
             {
                 Console.Clear();
-                Console.WriteLine("----Delete recipe----");
+               ClearRecipe();
+                menu();
             }
             else if (choice == "6")
             {

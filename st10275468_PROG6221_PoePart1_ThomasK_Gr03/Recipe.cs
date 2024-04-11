@@ -214,5 +214,52 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.ReadKey();
             Console.Clear();
         }
+        public void ClearRecipe()
+        {
+            
+            Console.WriteLine();
+            Console.WriteLine("Do you want to clear the recipe? ");
+            Console.WriteLine("Type either YES/NO :");
+            string clear = Console.ReadLine();
+
+            if (clear == "YES")
+            {
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Recipe data has been deleted successfully");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine();
+                Console.WriteLine("Press any key to go back to the menu");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else if (clear == "NO")
+            {
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Recipe data has not been deleted");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine();
+                Console.WriteLine("Press any key to go back to the menu");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            {
+
+                Console.Beep();
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("------INVALID OPTION/FORMAT------");
+                Console.ForegroundColor = ConsoleColor.Black;
+                ClearRecipe();
+            }
+
+
+        }
     }
 }
