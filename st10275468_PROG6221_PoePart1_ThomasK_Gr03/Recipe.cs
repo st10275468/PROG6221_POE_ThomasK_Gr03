@@ -20,7 +20,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         {
             Console.Clear();
             Console.WriteLine("");
-            Console.WriteLine("----Create a recipe----");
+            Console.WriteLine("----CREATE RECIPE----");
             Console.WriteLine("");
 
             
@@ -78,9 +78,10 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         {
             Console.Clear();
             Console.WriteLine();
-            Console.WriteLine("-----Recipe details-----");
+            
+            Console.WriteLine("-----RECIPE DETAILS-----");
             Console.WriteLine();
-            Console.WriteLine("Ingredients: ");
+            Console.WriteLine("---Ingredients---");
             Console.WriteLine();
 
             for (int i = 0; i < numIngredients; i++)
@@ -89,12 +90,20 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.WriteLine("Ingredient {0}: {1} {2} of {3}", i+1, item.Key, item.Value, ingredients[i]);
 
             }
+            Console.WriteLine() ;
+            Console.WriteLine("---Steps---");
+            Console.WriteLine();
+            for (int i = 0; i < steps; i++)
+            {
+                Console.WriteLine("Step {0}: {1}", i+1, stepDescription[i]);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Press enter to go back to the menu");
+            Console.ReadLine();
             
-
-
            
                
-            //700ml of milk
+           
             }
 
         

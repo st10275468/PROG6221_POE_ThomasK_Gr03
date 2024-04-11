@@ -15,7 +15,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         {
             
             Console.WriteLine();
-            Console.WriteLine("--------Recipe Application---------");
+            Console.WriteLine("--------RECIPE APPLICATION---------");
             Console.WriteLine();
 
             for (int i = 0; i < MenuOptions.Length; i++)
@@ -24,7 +24,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                  }
 
             Console.WriteLine();
-            Console.WriteLine("Please enter one of the options above: ");
+            Console.WriteLine("Enter one of the options above: ");
             string choice = Console.ReadLine();
 
             if (choice == "1")
@@ -36,7 +36,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             else if (choice == "2")
             {
                 DisplayRecipe();
-               
+                Console.Clear();
+                menu();
             }
             else if (choice == "3")
             {
@@ -65,7 +66,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine("------INVALID OPTION/FORMAT---- --");
+                Console.WriteLine("------INVALID OPTION/FORMAT------");
                 Console.ForegroundColor = ConsoleColor.Black;
                 menu();
             }
