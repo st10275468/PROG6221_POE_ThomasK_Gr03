@@ -51,7 +51,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             else if(choice == "4")
             {
                 Console.Clear();
-                Console.WriteLine("----Reset recipe scale----");
+                ResetQuantity();
+                menu();
             }
             else if (choice == "5")
             {

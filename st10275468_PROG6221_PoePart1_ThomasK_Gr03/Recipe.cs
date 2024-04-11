@@ -177,7 +177,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.WriteLine("Successfully scaled recipe quantities");
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine();
-                Console.WriteLine("Press enter to go back to the menu");
+                Console.WriteLine("Press any key to go back to the menu");
                 Console.ReadLine();
                 Console.Clear();
             }
@@ -198,10 +198,21 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         }
         public void ResetQuantity()
         {
+            Console.Clear();
+            Console.WriteLine();
+            
             for (int i = 0; i < numIngredients; i++)
             {
-
+                ingredientQuantity[i] = ingredientQuantityBackup[i];
             }
+            Console.ForegroundColor= ConsoleColor.Green;
+            Console.WriteLine("Quantities reset successfully");
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            Console.WriteLine() ;
+            Console.WriteLine("Press any key to go back to the menu");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
