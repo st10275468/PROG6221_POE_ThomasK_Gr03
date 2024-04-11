@@ -8,13 +8,16 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 {
     internal class Recipe
     {
-        
+        Dictionary<string, string> ingredients = new Dictionary<string, string>();
+        double[] ingredientQuantity;
+     
+
         int numIngredients;
-        Dictionary<double, string> ingredientQuantUnit = new Dictionary<double, string>();
-        string[] ingredients;
+       
+       
         string[] stepDescription;
-        string unit = null;
-        double quantity = 0;
+        string ingredient ;
+        string unit;
         int steps;
         public void GetRecipeDetails()
         {
@@ -26,23 +29,25 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             
             Console.WriteLine("Enter the number of ingredients: ");
             numIngredients = int.Parse(Console.ReadLine());
-            ingredients = new string[numIngredients];
+            ingredientQuantity = new double[numIngredients];
+           
 
-            
             for (int i = 0; i < numIngredients; i++)
             {
+               
                 Console.Clear() ;
                 Console.WriteLine("");
                 Console.WriteLine("Enter the name of ingredient {0}: ", i + 1);
-                ingredients[i] = Console.ReadLine();
+                ingredient = Console.ReadLine();
+                
+                Console.WriteLine("Enter the quantity of ingredient {0}: ", i+1 );
+                ingredientQuantity[i] = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("Enter the quantity of {0}: ", ingredients[i]);
-                quantity = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Enter the unit of measurement used for {0}: ", ingredients[i]);
+                Console.WriteLine("Enter the unit of measurement used for ingredient {0}: ", i+1);
                 unit = Console.ReadLine();
 
-                ingredientQuantUnit.Add(quantity, unit);
+                ingredients.Add(ingredient, unit);
+
             }
             Console.Clear();
             Console.WriteLine("");
@@ -86,8 +91,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
             for (int i = 0; i < numIngredients; i++)
             {
-                KeyValuePair<double, string> item = ingredientQuantUnit.ElementAt(i);
-                Console.WriteLine("Ingredient {0}: {1} {2} of {3}", i+1, item.Key, item.Value, ingredients[i]);
+                KeyValuePair<string, string> item = ingredients.ElementAt(i);
+                Console.WriteLine("Ingredient {0}: {1} {2} of {3}", i+1, ingredientQuantity[i], item.Value, item.Key);
 
             }
             Console.WriteLine() ;
@@ -101,15 +106,65 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.WriteLine("Press enter to go back to the menu");
             Console.ReadLine();
             
-           
-               
+            
+              
            
             }
 
         
-
+        
         public void ScaleRecipe()
         {
+            string[] scaleOptions = {"1..Half(0.5)","2..Double(2)","3..Triple(3)" };
+           
+            Console.WriteLine();
+            Console.WriteLine("-----SCALE RECIPE-----");
+            Console.WriteLine();
+            Console.WriteLine("Choose a scale below: ");
+            Console.WriteLine();
+            for (int i = 0; i <3; i++)
+            {
+                Console.WriteLine(scaleOptions[i]);
+            }
+            string choice = Console.ReadLine();
+
+            if (choice == "1")
+            {
+                for (int i = 0; i < numIngredients; i++)
+                {
+                    ingredientQuantity[i] = ingredientQuantity[i] / 2; 
+                   
+                 }
+            }
+            else if (choice == "2")
+            {
+                for (int i = 0; i < numIngredients; i++)
+                {
+                    ingredientQuantity[i] = ingredientQuantity[i] * 2;
+
+                }
+            }
+            else if (choice == "3")
+            {
+                for (int i = 0; i < numIngredients; i++)
+                {
+                    ingredientQuantity[i] = ingredientQuantity[i] * 3;
+
+                }
+            }
+            else
+            {
+
+                Console.Beep();
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("------INVALID OPTION/FORMAT------");
+                Console.ForegroundColor = ConsoleColor.Black;
+                ScaleRecipe();
+
+            }
 
         }
     }
