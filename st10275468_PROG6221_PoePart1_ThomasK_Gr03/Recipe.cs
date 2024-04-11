@@ -10,7 +10,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
     {
         Dictionary<string, string> ingredients = new Dictionary<string, string>();
         double[] ingredientQuantity;
-     
+        double[] ingredientQuantityBackup;
 
         int numIngredients;
        
@@ -30,7 +30,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.WriteLine("Enter the number of ingredients: ");
             numIngredients = int.Parse(Console.ReadLine());
             ingredientQuantity = new double[numIngredients];
-           
+            ingredientQuantityBackup = new double[numIngredients];
 
             for (int i = 0; i < numIngredients; i++)
             {
@@ -42,7 +42,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 
                 Console.WriteLine("Enter the quantity of ingredient {0}: ", i+1 );
                 ingredientQuantity[i] = int.Parse(Console.ReadLine());
-
+                ingredientQuantityBackup[i] = ingredientQuantity[i];
                 Console.WriteLine("Enter the unit of measurement used for ingredient {0}: ", i+1);
                 unit = Console.ReadLine();
 
@@ -115,6 +115,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         
         public void ScaleRecipe()
         {
+            
             string[] scaleOptions = {"1..Half(0.5)","2..Double(2)","3..Triple(3)" };
            
             Console.WriteLine();
@@ -133,8 +134,18 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 for (int i = 0; i < numIngredients; i++)
                 {
                     ingredientQuantity[i] = ingredientQuantity[i] / 2; 
-                   
+                    
                  }
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Successfully scaled recipe quantities");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine();
+                Console.WriteLine("Press enter to go back to the menu");
+                Console.ReadLine();
+                Console.Clear();
+
             }
             else if (choice == "2")
             {
@@ -143,6 +154,15 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                     ingredientQuantity[i] = ingredientQuantity[i] * 2;
 
                 }
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Successfully scaled recipe quantities");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine();
+                Console.WriteLine("Press enter to go back to the menu");
+                Console.ReadLine();
+                Console.Clear();
             }
             else if (choice == "3")
             {
@@ -151,6 +171,15 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                     ingredientQuantity[i] = ingredientQuantity[i] * 3;
 
                 }
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Successfully scaled recipe quantities");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine();
+                Console.WriteLine("Press enter to go back to the menu");
+                Console.ReadLine();
+                Console.Clear();
             }
             else
             {

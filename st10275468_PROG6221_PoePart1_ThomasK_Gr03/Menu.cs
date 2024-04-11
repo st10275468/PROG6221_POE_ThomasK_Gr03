@@ -44,6 +44,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.Clear();
                 ScaleRecipe();
                 
+                
+                
                 menu();
             }
             else if(choice == "4")
