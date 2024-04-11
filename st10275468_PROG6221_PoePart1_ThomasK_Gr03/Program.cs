@@ -10,7 +10,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
     {
         static void Main(string[] args)
         {
-            Run();
+            Run(); 
         }
         static void Run()
         {
