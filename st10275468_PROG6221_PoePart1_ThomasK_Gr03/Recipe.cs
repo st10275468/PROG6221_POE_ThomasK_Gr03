@@ -24,29 +24,29 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.Clear();
             Console.WriteLine("");
             Console.WriteLine("----CREATE RECIPE----");
-            Console.WriteLine("");
+           
 
 
-            var input = false;
-            int exp;
+            var ingreInput = false;
+            int expIng;
 
-            while (!input)
+            while (!ingreInput)
             {
-                Console.WriteLine("Enter the number of ingredients: ");
+                Console.WriteLine("");
+                Console.WriteLine("Enter the number of ingredients in this recipe: ");
                 var numIngr = Console.ReadLine();
-                input = int.TryParse(numIngr, out exp);
-                numIngredients = exp;
-                if (!input)
-                {
+                ingreInput = int.TryParse(numIngr, out expIng);
+                numIngredients = expIng;
+                if (!ingreInput)
+                    {
+                    Console.Clear();
                     Console.Beep();
                     Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("");
                     Console.WriteLine("INVALID FORMAT, try again!");
                     Console.ForegroundColor = ConsoleColor.Black;
-                }
-                
-            }
-           
-           
+                     }
+                 }
             ingredientQuantity = new double[numIngredients];
             ingredientQuantityBackup = new double[numIngredients];
 
@@ -65,12 +65,31 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 unit = Console.ReadLine();
 
                 ingredients.Add(ingredient, unit);
-
                 }
+
+            var stepInput = false;
+            int expStep;
             Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("Enter the number of steps: ");
-            steps = int.Parse(Console.ReadLine());
+            while (!stepInput) {
+               
+                Console.WriteLine("");
+                Console.WriteLine("Enter the number of steps in this recipe: ");
+                var numStep = Console.ReadLine();
+                stepInput = int.TryParse(numStep, out expStep);
+                steps = expStep;
+                if (!stepInput)
+                {
+                    Console.Clear();
+                    Console.Beep();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("");
+                    Console.WriteLine("INVALID FORMAT, try again!");
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+            }
+
+            
+           
 
             stepDescription = new string[steps];
             for (int i = 0; i < steps; i++)
@@ -82,14 +101,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             }
 
             Console.Clear();
-          /*  for (int i = 0;i < steps; i++)
-            {
-                Console.WriteLine("Step {0}: {1}" , i + 1, stepDescription[i] );
-            }
-          /*  foreach (KeyValuePair <double, string> item in ingredientQuantUnit)
-            {
-                Console.WriteLine("U need {0}, {1}", item.Key, item.Value);
-            }*/
+        
 
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
