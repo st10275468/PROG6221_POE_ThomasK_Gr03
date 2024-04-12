@@ -26,14 +26,32 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.WriteLine("----CREATE RECIPE----");
             Console.WriteLine("");
 
-            
-            Console.WriteLine("Enter the number of ingredients: ");
-            numIngredients = int.Parse(Console.ReadLine());
+
+            var input = false;
+            int exp;
+
+            while (!input)
+            {
+                Console.WriteLine("Enter the number of ingredients: ");
+                var numIngr = Console.ReadLine();
+                input = int.TryParse(numIngr, out exp);
+                numIngredients = exp;
+                if (!input)
+                {
+                    Console.Beep();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("INVALID FORMAT, try again!");
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                
+            }
+           
+           
             ingredientQuantity = new double[numIngredients];
             ingredientQuantityBackup = new double[numIngredients];
 
             for (int i = 0; i < numIngredients; i++)
-            {
+                {
                
                 Console.Clear() ;
                 Console.WriteLine("");
@@ -48,7 +66,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
                 ingredients.Add(ingredient, unit);
 
-            }
+                }
             Console.Clear();
             Console.WriteLine("");
             Console.WriteLine("Enter the number of steps: ");
@@ -177,7 +195,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.WriteLine("Successfully scaled recipe quantities");
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine();
-                Console.WriteLine("Press any key to go back to the menu");
+                Console.WriteLine("Press enter to go back to the menu");
                 Console.ReadLine();
                 Console.Clear();
             }

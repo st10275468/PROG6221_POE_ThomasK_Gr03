@@ -64,6 +64,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             {
                 Console.Clear();
                 Environment.Exit(0);
+               
+               
             }
             else
             {
