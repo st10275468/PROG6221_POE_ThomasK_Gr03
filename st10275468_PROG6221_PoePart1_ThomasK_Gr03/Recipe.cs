@@ -57,10 +57,32 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.WriteLine("");
                 Console.WriteLine("Enter the name of ingredient {0}: ", i + 1);
                 ingredient = Console.ReadLine();
+
+                var ingrQuant = false;
+                int quantExp;
+
+                while (!ingrQuant)
+                {
+                    Console.WriteLine("Enter the quantity of ingredient {0}: ", i + 1);
+                    var quantIngr = Console.ReadLine();
+                    ingrQuant = int.TryParse(quantIngr, out quantExp);
+                    ingredientQuantity[i] = quantExp;
+                    ingredientQuantityBackup[i] = ingredientQuantity[i];
+
+                    if (!ingrQuant)
+                    {
+                        Console.Clear();
+                        Console.Beep();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("");
+                        Console.WriteLine("INVALID FORMAT, try again!");
+                        Console.ForegroundColor = ConsoleColor.Black;
+
+                    }
+                }
+
+
                 
-                Console.WriteLine("Enter the quantity of ingredient {0}: ", i+1 );
-                ingredientQuantity[i] = int.Parse(Console.ReadLine());
-                ingredientQuantityBackup[i] = ingredientQuantity[i];
                 Console.WriteLine("Enter the unit of measurement used for ingredient {0}: ", i+1);
                 unit = Console.ReadLine();
 
@@ -70,6 +92,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             var stepInput = false;
             int expStep;
             Console.Clear();
+
             while (!stepInput) {
                
                 Console.WriteLine("");
@@ -78,14 +101,14 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 stepInput = int.TryParse(numStep, out expStep);
                 steps = expStep;
                 if (!stepInput)
-                {
+                    {
                     Console.Clear();
                     Console.Beep();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("");
                     Console.WriteLine("INVALID FORMAT, try again!");
                     Console.ForegroundColor = ConsoleColor.Black;
-                }
+                    }
             }
 
             
