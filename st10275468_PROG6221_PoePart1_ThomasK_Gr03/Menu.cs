@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 {
     internal class Menu : Recipe
-    {
+    {   
+        //A string array that holds all the options for the menu in the application
         string[] MenuOptions = {"1..Create recipe","2..Display recipe","3..Scale recipe","4..Reset scale","5..Delete recipe","6..Exit" };
               
         /// <summary>
@@ -30,7 +31,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.WriteLine("Enter one of the options above: ");
             string choice = Console.ReadLine(); //Getting the input from the user on what option they choose 
 
-            //Using if else statements to choose what happens on what the input is from the user. After the methods have run it takes the user back to the menu
+            //Using if else statements to choose what happens depending on the input from the user.
+            //After the methods have run it takes the user back to the menu
 
             if (choice == "1")  //If the user chooses option 1, it will call a method GetRecipe which will allow them to create a recipe
             {   
@@ -38,13 +40,15 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 menu();
                 
             }
-            else if (choice == "2") //If the user chooses option 2, it will call a method DisplayRecipe which will Display the ingredients and steps in a neat format
+            else if (choice == "2") //If the user chooses option 2, it will call a method DisplayRecipe which will Display the ingredients
+                                    //and steps in a neat format
             {
                 DisplayRecipe();
                 Console.Clear();
                 menu();
             }
-            else if (choice == "3") //If the user chooses option 3, it will call a method ScaleRecipe which will allow them to scale the recipe quantities
+            else if (choice == "3") //If the user chooses option 3, it will call a method ScaleRecipe which will allow them to scale
+                                    //the recipe quantities
             {
                 Console.Clear();
                 ScaleRecipe();
@@ -57,7 +61,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 ResetQuantity();
                 menu();
             }
-            else if (choice == "5") //If the user chooses option 5, it will call a method ClearRecipe which will allow the user to delete the recipe if wanted.
+            else if (choice == "5") //If the user chooses option 5, it will call a method ClearRecipe which will allow the user to
+                                    //delete the recipe if wanted.
             {
                 Console.Clear();
                 ClearRecipe();
@@ -81,9 +86,6 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             }
 
         }
-
-
-
-
     }
 }
+//------------------------------------------------------------END OF FILE-------------------------------------------------------------------------------------

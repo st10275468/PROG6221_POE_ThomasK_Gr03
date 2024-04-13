@@ -8,15 +8,20 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 {
     internal class Recipe
     {
-
-        Dictionary<string, string> ingredients = new Dictionary<string, string>();
-        double[] ingredientQuantity;
-        double[] ingredientQuantityBackup;
-        int numIngredients;
-        string[] stepDescription;
+        //Creating all the neccassary variables and arrays needed for the methods that follow
+        Dictionary<string, string> ingredients = new Dictionary<string, string>();//Stores the ingredient name and unit of measurement
+        double[] ingredientQuantity; //Stores the quantity
+        double[] ingredientQuantityBackup; //Quantity backup
+        int numIngredients; 
+        string[] stepDescription; //Stores the description of steps
         string ingredient ;
         string unit;
         int steps;
+      
+        /// <summary>
+        /// Method GetRecipe will allow the user to create a new menu by prompting them for the name, quantity unit of measurement
+        /// and the step description of each ingredient and step
+        /// </summary>
         public void GetRecipe()
         {
             Console.Clear();
@@ -25,17 +30,19 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
            
             var ingreInput = false;
             int expIng;
-            while (!ingreInput)
-                {
+            while (!ingreInput)//Using a while loop for error handling. While their input is not valid format it will keep prompting them
+                                //for another input
+                 {
                 Console.WriteLine("");
                 Console.WriteLine("Enter the number of ingredients in this recipe: ");
                 var numIngr = Console.ReadLine();
 
-                ingreInput = int.TryParse(numIngr, out expIng);
+                ingreInput = int.TryParse(numIngr, out expIng); //If ingreInput is true then the user has entered a valid input and the while loop
+                                                                //will stop and the number of ingredients will be saved.
                 numIngredients = expIng;
                 
-                if (!ingreInput)
-                    {
+                if (!ingreInput)        //If it is not true then it will prompt the user that their input is invalid and they will have to enter
+                    {                   //another input.
                     Console.Clear();
                     Console.Beep();
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -45,27 +52,29 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                      }
                  }
 
-            ingredientQuantity = new double[numIngredients];
-            ingredientQuantityBackup = new double[numIngredients];
+            ingredientQuantity = new double[numIngredients];    //Setting the ingredientQuantity and ingredientQuantityBackup array with the length
+            ingredientQuantityBackup = new double[numIngredients];//of numIngredients which we got from the user above.
 
-            for (int i = 0; i < numIngredients; i++)
-                {
+            for (int i = 0; i < numIngredients; i++)    //Using a for loop to get the ingredient name, quantity and unit of measurement
+                {                                       //of each ingredient
                 Console.Clear() ;
                 Console.WriteLine("");
                 Console.WriteLine("Enter the name of ingredient {0}: ", i + 1);
-                ingredient = Console.ReadLine();
+                ingredient = Console.ReadLine();    //Getting the ingredient name from the user
 
                 var ingrQuant = false;
                 int quantExp;
-                while (!ingrQuant)
-                    {
-                    Console.WriteLine("Enter the quantity of ingredient {0}: ", i + 1);
+                while (!ingrQuant)//Using a while loop for error handling. While their input is not valid format it will keep prompting them
+                                  //for another input
+                {
+                    Console.WriteLine("Enter the quantity of ingredient {0}: ", i + 1); //Asking the user for the quantity which must be a valid integer
                     var quantIngr = Console.ReadLine();
-                    ingrQuant = int.TryParse(quantIngr, out quantExp);
-                    ingredientQuantity[i] = quantExp;
-                    ingredientQuantityBackup[i] = ingredientQuantity[i];
+                    ingrQuant = int.TryParse(quantIngr, out quantExp); //If ingrQuant is true then the user has entered a valid input and the while loop
+                                                                       //will stop and the quantity will be saved.
+                    ingredientQuantity[i] = quantExp;                       //Quantities saved to both the arrays and the while loop will stop
+                    ingredientQuantityBackup[i] = ingredientQuantity[i]; 
 
-                    if (!ingrQuant)
+                    if (!ingrQuant) //If it is not a valid input it will keep prompting the user for another until it is valid.
                     {
                         Console.Clear();
                         Console.Beep();
@@ -76,10 +85,10 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
                     }
                 }
-
-                Console.WriteLine("Enter the unit of measurement used for ingredient {0}: ", i+1);
+                                    //Getting the unit of measurement from the user
+                Console.WriteLine("Enter the unit of measurement used for ingredient {0}: ", i+1);  
                 unit = Console.ReadLine();
-                ingredients.Add(ingredient, unit);
+                ingredients.Add(ingredient, unit);  //Adding the name and unit of measurement into an array dictionary
                 }
 
             Console.Clear();
@@ -312,3 +321,4 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         }
     }
 }
+//------------------------------------------------------------END OF FILE---------------------------------------------------------------------
