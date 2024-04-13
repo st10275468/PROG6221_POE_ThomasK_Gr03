@@ -259,36 +259,45 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             }
 
         }
+        
+        /// <summary>
+        /// Method ResetQuantity created to reset the quantites of the ingredients back to the original values if they have been scaled
+        /// </summary>
         public void ResetQuantity()
         {
             Console.Clear();
             Console.WriteLine();
             
-            for (int i = 0; i < numIngredients; i++)
+            for (int i = 0; i < numIngredients; i++) //Using a for loop to iterate through the ingredientQuantity array and set the values
+                                                     //to the values in the backup array which are the original ones.
                 {
                 ingredientQuantity[i] = ingredientQuantityBackup[i];
                 }
             Console.ForegroundColor= ConsoleColor.Green;
-            Console.WriteLine("Quantities reset successfully");
+            Console.WriteLine("Quantities reset successfully");//Prompting the user that it was successful
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine() ;
             Console.WriteLine("Press any key to go back to the menu");
             Console.ReadKey();
             Console.Clear();
         }
+
+        /// <summary>
+        /// Method ClearRecipe created to delete all the data about the recipe that the user inputted previously
+        /// </summary>
         public void ClearRecipe()
         {
             
             Console.WriteLine();
             Console.WriteLine("Do you want to clear the recipe? ");
-            Console.WriteLine("Type either YES/NO :");
-            string clear = Console.ReadLine();
+            Console.WriteLine("Type either YES/NO :");//Prompting the user to type yes or no if they want to delete the recipe
+            string clear = Console.ReadLine(); //Getting the users input
 
-            if (clear == "YES")
+            if (clear == "YES")//If they type YES, the recipe details will be deleted
                 {
                 Console.Clear();
-
-                ingredients.Clear();
+                //Below this, all the details of the arrays and variables are being deleted and reset to nothing
+                ingredients.Clear(); 
                 ingredientQuantity = new double[0];
                 ingredientQuantityBackup = new double[0];
                 numIngredients = 0;
@@ -299,26 +308,26 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Recipe data has been deleted successfully");
+                Console.WriteLine("Recipe data has been deleted successfully");//Prompting that it was successful
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine();
                 Console.WriteLine("Press any key to go back to the menu");
                 Console.ReadKey();
                 Console.Clear();
                 }
-            else if (clear == "NO")
+            else if (clear == "NO") //If the user types NO, the recipe details will not be deleted
                 {
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Recipe data has not been deleted");
+                Console.WriteLine("Recipe data has not been deleted");//Prompting the user that nothing was deleted.
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine();
                 Console.WriteLine("Press any key to go back to the menu");
                 Console.ReadKey();
                 Console.Clear();
                  }
-            else
+            else //If the user does not input a valid option it will keep prompting them for another until they input a valid one
                 {
                 Console.Beep();
                 Console.Clear();
