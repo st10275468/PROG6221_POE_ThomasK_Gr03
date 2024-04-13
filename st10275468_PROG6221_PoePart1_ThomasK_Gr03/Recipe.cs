@@ -8,35 +8,32 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 {
     internal class Recipe
     {
+
         Dictionary<string, string> ingredients = new Dictionary<string, string>();
         double[] ingredientQuantity;
         double[] ingredientQuantityBackup;
-
         int numIngredients;
-       
-       
         string[] stepDescription;
         string ingredient ;
         string unit;
         int steps;
-        public void GetRecipeDetails()
+        public void GetRecipe()
         {
             Console.Clear();
             Console.WriteLine("");
             Console.WriteLine("----CREATE RECIPE----");
            
-
-
             var ingreInput = false;
             int expIng;
-
             while (!ingreInput)
-            {
+                {
                 Console.WriteLine("");
                 Console.WriteLine("Enter the number of ingredients in this recipe: ");
                 var numIngr = Console.ReadLine();
+
                 ingreInput = int.TryParse(numIngr, out expIng);
                 numIngredients = expIng;
+                
                 if (!ingreInput)
                     {
                     Console.Clear();
@@ -47,12 +44,12 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                     Console.ForegroundColor = ConsoleColor.Black;
                      }
                  }
+
             ingredientQuantity = new double[numIngredients];
             ingredientQuantityBackup = new double[numIngredients];
 
             for (int i = 0; i < numIngredients; i++)
                 {
-               
                 Console.Clear() ;
                 Console.WriteLine("");
                 Console.WriteLine("Enter the name of ingredient {0}: ", i + 1);
@@ -60,9 +57,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
                 var ingrQuant = false;
                 int quantExp;
-
                 while (!ingrQuant)
-                {
+                    {
                     Console.WriteLine("Enter the quantity of ingredient {0}: ", i + 1);
                     var quantIngr = Console.ReadLine();
                     ingrQuant = int.TryParse(quantIngr, out quantExp);
@@ -81,25 +77,24 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                     }
                 }
 
-
-                
                 Console.WriteLine("Enter the unit of measurement used for ingredient {0}: ", i+1);
                 unit = Console.ReadLine();
-
                 ingredients.Add(ingredient, unit);
                 }
 
-            var stepInput = false;
-            int expStep;
             Console.Clear();
 
+            var stepInput = false;
+            int expStep;
             while (!stepInput) {
                
                 Console.WriteLine("");
                 Console.WriteLine("Enter the number of steps in this recipe: ");
                 var numStep = Console.ReadLine();
+
                 stepInput = int.TryParse(numStep, out expStep);
                 steps = expStep;
+
                 if (!stepInput)
                     {
                     Console.Clear();
@@ -111,24 +106,19 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                     }
             }
 
-            
-           
-
             stepDescription = new string[steps];
             for (int i = 0; i < steps; i++)
-            {
+                {
                 Console.Clear();
                 Console.WriteLine();
                 Console.WriteLine("Enter a description of step: {0}", i + 1);
                 stepDescription[i] = Console.ReadLine() ;
-            }
+                }
 
             Console.Clear();
-        
-
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
-               Console.WriteLine("------Recipe details successfully recorded------");
+            Console.WriteLine("------Recipe details successfully recorded------");
             Console.ForegroundColor = ConsoleColor.Black;
             
         }
@@ -136,33 +126,31 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         {
             Console.Clear();
             Console.WriteLine();
-            
             Console.WriteLine("-----RECIPE DETAILS-----");
             Console.WriteLine();
             Console.WriteLine("---Ingredients---");
             Console.WriteLine();
 
             for (int i = 0; i < numIngredients; i++)
-            {
+                {
                 KeyValuePair<string, string> item = ingredients.ElementAt(i);
                 Console.WriteLine("Ingredient {0}: {1} {2} of {3}", i+1, ingredientQuantity[i], item.Value, item.Key);
+                }
 
-            }
             Console.WriteLine() ;
             Console.WriteLine("---Steps---");
             Console.WriteLine();
+
             for (int i = 0; i < steps; i++)
-            {
+                {
                 Console.WriteLine("Step {0}: {1}", i+1, stepDescription[i]);
-            }
+                }
+
             Console.WriteLine();
             Console.WriteLine("Press enter to go back to the menu");
             Console.ReadLine();
             
-            
-              
-           
-            }
+         }
 
         
         
@@ -176,19 +164,21 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.WriteLine();
             Console.WriteLine("Choose a scale below: ");
             Console.WriteLine();
+
             for (int i = 0; i <3; i++)
             {
                 Console.WriteLine(scaleOptions[i]);
             }
+
             string choice = Console.ReadLine();
 
             if (choice == "1")
             {
                 for (int i = 0; i < numIngredients; i++)
-                {
+                    {
                     ingredientQuantity[i] = ingredientQuantity[i] / 2; 
                     
-                 }
+                    }
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -203,10 +193,10 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             else if (choice == "2")
             {
                 for (int i = 0; i < numIngredients; i++)
-                {
+                    {
                     ingredientQuantity[i] = ingredientQuantity[i] * 2;
+                    }
 
-                }
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -220,10 +210,10 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             else if (choice == "3")
             {
                 for (int i = 0; i < numIngredients; i++)
-                {
+                    {
                     ingredientQuantity[i] = ingredientQuantity[i] * 3;
 
-                }
+                    }
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -241,7 +231,6 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Red;
-
                 Console.WriteLine("------INVALID OPTION/FORMAT------");
                 Console.ForegroundColor = ConsoleColor.Black;
                 ScaleRecipe();
@@ -255,13 +244,12 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.WriteLine();
             
             for (int i = 0; i < numIngredients; i++)
-            {
+                {
                 ingredientQuantity[i] = ingredientQuantityBackup[i];
-            }
+                }
             Console.ForegroundColor= ConsoleColor.Green;
             Console.WriteLine("Quantities reset successfully");
             Console.ForegroundColor = ConsoleColor.Black;
-
             Console.WriteLine() ;
             Console.WriteLine("Press any key to go back to the menu");
             Console.ReadKey();
@@ -276,16 +264,16 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             string clear = Console.ReadLine();
 
             if (clear == "YES")
-            {
+                {
                 Console.Clear();
 
                 ingredients.Clear();
                 ingredientQuantity = new double[0];
                 ingredientQuantityBackup = new double[0];
                 numIngredients = 0;
-                 stepDescription = new string[0];
+                stepDescription = new string[0];
                 ingredient = null;
-                 unit = null;
+                unit = null;
                 steps = 0;
 
                 Console.WriteLine();
@@ -296,9 +284,9 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.WriteLine("Press any key to go back to the menu");
                 Console.ReadKey();
                 Console.Clear();
-            }
+                }
             else if (clear == "NO")
-            {
+                {
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -308,15 +296,13 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.WriteLine("Press any key to go back to the menu");
                 Console.ReadKey();
                 Console.Clear();
-            }
+                 }
             else
-            {
-
+                {
                 Console.Beep();
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Red;
-
                 Console.WriteLine("------INVALID OPTION/FORMAT------");
                 Console.ForegroundColor = ConsoleColor.Black;
                 ClearRecipe();
