@@ -27,7 +27,11 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.Clear();
             Console.WriteLine("");
             Console.WriteLine("----CREATE RECIPE----");
-           
+
+
+            //INPUT VALIDATION:I learnt it from:(wertzui, 2022. c# input validation for strings and integers. [Online] 
+            // Available at: https://stackoverflow.com/questions/72400895/c-sharp-input-validation-for-strings-and-integers
+            //  [Accessed 12 April 2024].
             var ingreInput = false;
             int expIng;
             while (!ingreInput)//Using a while loop for error handling. While their input is not valid format it will keep prompting them
@@ -50,8 +54,8 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                     Console.WriteLine("INVALID FORMAT, try again!");
                     Console.ForegroundColor = ConsoleColor.Black;
                      }
-                 }
-
+                 } //End of VALIDATION
+                    
             ingredientQuantity = new double[numIngredients];    //Setting the ingredientQuantity and ingredientQuantityBackup array with the length
             ingredientQuantityBackup = new double[numIngredients];//of numIngredients which we got from the user above.
 
@@ -62,6 +66,9 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.WriteLine("Enter the name of ingredient {0}: ", i + 1);
                 ingredient = Console.ReadLine();    //Getting the ingredient name from the user
 
+                //INPUT VALIDATION:I learnt it from:(wertzui, 2022. c# input validation for strings and integers. [Online] 
+                // Available at: https://stackoverflow.com/questions/72400895/c-sharp-input-validation-for-strings-and-integers
+                //  [Accessed 12 April 2024].
                 var ingrQuant = false;
                 int quantExp;
                 while (!ingrQuant)//Using a while loop for error handling. While their input is not valid format it will keep prompting them
@@ -84,8 +91,9 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                         Console.ForegroundColor = ConsoleColor.Black;
 
                     }
-                }
-                                    //Getting the unit of measurement from the user
+                }//End of VALIDATION
+
+                 //Getting the unit of measurement from the user
                 Console.WriteLine("Enter the unit of measurement used for ingredient {0}: ", i+1);  
                 unit = Console.ReadLine();
                 ingredients.Add(ingredient, unit);  //Adding the name and unit of measurement into an array dictionary
@@ -93,6 +101,9 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
             Console.Clear();
 
+            //INPUT VALIDATION:I learnt it from:(wertzui, 2022. c# input validation for strings and integers. [Online] 
+            // Available at: https://stackoverflow.com/questions/72400895/c-sharp-input-validation-for-strings-and-integers
+            //  [Accessed 12 April 2024].
             var stepInput = false;
             int expStep;
             while (!stepInput) {    //Using a while loop to make sure that the user enters a valid input for the number of steps
@@ -114,7 +125,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                     Console.WriteLine("INVALID FORMAT, try again!");
                     Console.ForegroundColor = ConsoleColor.Black;
                     }
-            }
+            }//End of VALIDATION
 
             stepDescription = new string[steps];    //Setting the stepDesctription array length to the number of steps
             for (int i = 0; i < steps; i++) //Using a for loop to enter the description of each step
@@ -148,7 +159,11 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
             for (int i = 0; i < numIngredients; i++)    //Using a for loop to iterate through the dictonary and array and output
                 {                                       //the data in a neat format
-                KeyValuePair<string, string> item = ingredients.ElementAt(i); //Getting the input from the dictionary
+
+                //Learnt to get the values from the dictionary at: (VanBuskirk, A., 2023. How to iterate over a dictionary in C#?. [Online] 
+               // Available at: https://blog.wordbot.io/tech/how-to-iterate-over-a-dictionary-in-c/#:~:text=Value)%3B%20%7D-,In%20this%20example%2C%20we%20define%20a%20Dictionary%3Cstring%2C%20int,out%20its%20key%20and%20value.
+               // [Accessed 12 April 2024].)
+                 KeyValuePair<string, string> item = ingredients.ElementAt(i); //Getting the input from the dictionary
                 Console.WriteLine("Ingredient {0}: {1} {2} of {3}", i+1, ingredientQuantity[i], item.Value, item.Key);
                 }
 
