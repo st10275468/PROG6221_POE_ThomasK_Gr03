@@ -69,7 +69,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 {
                     Console.WriteLine("Enter the quantity of ingredient {0}: ", i + 1); //Asking the user for the quantity which must be a valid integer
                     var quantIngr = Console.ReadLine();
-                    ingrQuant = int.TryParse(quantIngr, out quantExp); //If ingrQuant is true then the user has entered a valid input and the while loop
+                    ingrQuant = int.TryParse(quantIngr, out quantExp); //If ingrQuant is true, then the user has entered a valid input and the while loop
                                                                        //will stop and the quantity will be saved.
                     ingredientQuantity[i] = quantExp;                       //Quantities saved to both the arrays and the while loop will stop
                     ingredientQuantityBackup[i] = ingredientQuantity[i]; 
@@ -95,16 +95,17 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
             var stepInput = false;
             int expStep;
-            while (!stepInput) {
+            while (!stepInput) {    //Using a while loop to make sure that the user enters a valid input for the number of steps
                
                 Console.WriteLine("");
-                Console.WriteLine("Enter the number of steps in this recipe: ");
+                Console.WriteLine("Enter the number of steps in this recipe: ");//prompting user for the number of steps
                 var numStep = Console.ReadLine();
 
-                stepInput = int.TryParse(numStep, out expStep);
-                steps = expStep;
+                stepInput = int.TryParse(numStep, out expStep); //If the input is valid it becomes true and the while loop will stop
+                steps = expStep; //The valid input is saved to the actual variable
 
-                if (!stepInput)
+                if (!stepInput) //If the input is invalid they will be prompted until the input is valid. The while loop will only stop 
+                                //once a valid input has been added
                     {
                     Console.Clear();
                     Console.Beep();
@@ -115,75 +116,84 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                     }
             }
 
-            stepDescription = new string[steps];
-            for (int i = 0; i < steps; i++)
+            stepDescription = new string[steps];    //Setting the stepDesctription array length to the number of steps
+            for (int i = 0; i < steps; i++) //Using a for loop to enter the description of each step
                 {
                 Console.Clear();
                 Console.WriteLine();
-                Console.WriteLine("Enter a description of step: {0}", i + 1);
-                stepDescription[i] = Console.ReadLine() ;
+                Console.WriteLine("Enter a description of step: {0}", i + 1); //prompting for the description of eachs tep
+                stepDescription[i] = Console.ReadLine() ; //Saving the description to its corresponding place in the array
                 }
 
             Console.Clear();
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("------Recipe details successfully recorded------");
+            Console.WriteLine("------Recipe details successfully recorded------"); 
             Console.ForegroundColor = ConsoleColor.Black;
             
         }
+
+        /// <summary>
+        /// The DisplayRecipe method will output all the data that was inputted above into a neat format on the page that makes
+        /// the recipe easy to understand and follow.
+        /// </summary>
         public void DisplayRecipe()
         {
             Console.Clear();
             Console.WriteLine();
-            Console.WriteLine("-----RECIPE DETAILS-----");
+            Console.WriteLine("-----RECIPE DETAILS-----"); 
             Console.WriteLine();
-            Console.WriteLine("---Ingredients---");
-            Console.WriteLine();
+            Console.WriteLine("---Ingredients---");//All the ingredients names, quantities and unit of measurement will be displayed
+            Console.WriteLine();                    //under this heading
 
-            for (int i = 0; i < numIngredients; i++)
-                {
-                KeyValuePair<string, string> item = ingredients.ElementAt(i);
+            for (int i = 0; i < numIngredients; i++)    //Using a for loop to iterate through the dictonary and array and output
+                {                                       //the data in a neat format
+                KeyValuePair<string, string> item = ingredients.ElementAt(i); //Getting the input from the dictionary
                 Console.WriteLine("Ingredient {0}: {1} {2} of {3}", i+1, ingredientQuantity[i], item.Value, item.Key);
                 }
 
             Console.WriteLine() ;
-            Console.WriteLine("---Steps---");
+            Console.WriteLine("---Steps---");//The steps and step desctriptions will be displayed under this heading
             Console.WriteLine();
 
-            for (int i = 0; i < steps; i++)
+            for (int i = 0; i < steps; i++) //Using a for loop to iterate through the description array and display it in a neat format
                 {
                 Console.WriteLine("Step {0}: {1}", i+1, stepDescription[i]);
                 }
 
             Console.WriteLine();
-            Console.WriteLine("Press enter to go back to the menu");
+            Console.WriteLine("Press enter to go back to the menu"); 
             Console.ReadLine();
             
          }
 
         
-        
+        /// <summary>
+        ///Method ScaleRecipe created to allow the user to scale the recipe quantites either by
+        ///half, double or triple the original value
+        /// </summary>
         public void ScaleRecipe()
         {
-            
+            //Using an array for the scale options given to the user
             string[] scaleOptions = {"1..Half(0.5)","2..Double(2)","3..Triple(3)" };
            
             Console.WriteLine();
             Console.WriteLine("-----SCALE RECIPE-----");
             Console.WriteLine();
-            Console.WriteLine("Choose a scale below: ");
+            Console.WriteLine("Choose a scale below: ");//Promting the user to choose what they want to scale the recipe by
             Console.WriteLine();
 
-            for (int i = 0; i <3; i++)
+            for (int i = 0; i <3; i++)//Using a for loop to display the scale options array
             {
                 Console.WriteLine(scaleOptions[i]);
             }
 
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine(); //Getting the input from the user
 
-            if (choice == "1")
+            if (choice == "1") //If their choice is 1, the recipe will be scaled by 0.5
             {
-                for (int i = 0; i < numIngredients; i++)
+                for (int i = 0; i < numIngredients; i++)//Using a for loop to iterate through ingredientQuantity array and divide 
+                                                        //all the values by 2
                     {
                     ingredientQuantity[i] = ingredientQuantity[i] / 2; 
                     
@@ -191,7 +201,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Successfully scaled recipe quantities");
+                Console.WriteLine("Successfully scaled recipe quantities"); //Prompting the user that the scale was successfull
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine();
                 Console.WriteLine("Press enter to go back to the menu");
@@ -199,41 +209,43 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.Clear();
 
             }
-            else if (choice == "2")
+            else if (choice == "2") //If their choice is 2, the recipe will be scaled by 2 times
             {
-                for (int i = 0; i < numIngredients; i++)
-                    {
+                for (int i = 0; i < numIngredients; i++) //Using a for loop to iterate through ingredientQuantity array and times 
+                {                                         //all the values by 2
+
                     ingredientQuantity[i] = ingredientQuantity[i] * 2;
                     }
 
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Successfully scaled recipe quantities");
+                Console.WriteLine("Successfully scaled recipe quantities"); //Prompting the user that the scale was successfull
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine();
                 Console.WriteLine("Press enter to go back to the menu");
                 Console.ReadLine();
                 Console.Clear();
             }
-            else if (choice == "3")
+            else if (choice == "3")//If their choice is 3, the recipe will be scaled by 3 times
             {
-                for (int i = 0; i < numIngredients; i++)
-                    {
+                for (int i = 0; i < numIngredients; i++)//Using a for loop to iterate through ingredientQuantity array and times 
+                                                        //all the values by 3
+                {
                     ingredientQuantity[i] = ingredientQuantity[i] * 3;
 
                     }
                 Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Successfully scaled recipe quantities");
+                Console.WriteLine("Successfully scaled recipe quantities");//Prompting the user that the scale was successfull
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine();
                 Console.WriteLine("Press enter to go back to the menu");
                 Console.ReadLine();
                 Console.Clear();
             }
-            else
+            else //Else if they did not input a valid option it will keep prompting them for another
             {
 
                 Console.Beep();
