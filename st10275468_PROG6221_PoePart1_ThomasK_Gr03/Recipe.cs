@@ -154,6 +154,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.WriteLine();
             Console.WriteLine("-----RECIPE DETAILS-----"); 
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("---Ingredients---");//All the ingredients names, quantities and unit of measurement will be displayed
             Console.WriteLine();                    //under this heading
 
@@ -166,7 +167,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                  KeyValuePair<string, string> item = ingredients.ElementAt(i); //Getting the input from the dictionary
                 Console.WriteLine("Ingredient {0}: {1} {2} of {3}", i+1, ingredientQuantity[i], item.Value, item.Key);
                 }
-
+            Console.ForegroundColor= ConsoleColor.Magenta;
             Console.WriteLine() ;
             Console.WriteLine("---Steps---");//The steps and step desctriptions will be displayed under this heading
             Console.WriteLine();
@@ -177,6 +178,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 }
 
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Press enter to go back to the menu"); 
             Console.ReadLine();
             
