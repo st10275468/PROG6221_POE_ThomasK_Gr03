@@ -10,6 +10,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
     {
         static void Main(string[] args)
         {
+           
             Run(); 
         }
         static void Run() //Run method created so that we could keep the main clean. This method brings up the menu and changes the console colour

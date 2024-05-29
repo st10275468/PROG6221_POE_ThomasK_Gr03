@@ -61,10 +61,12 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
         public Recipe(string fRecipeName)
         {
-            recipeName = fRecipeName;
+            this.recipeName = fRecipeName;
             recipeIngredients = new List<Ingredient>();
             recipeSteps = new List<Step>();
         }
+
+        
         public void AddIngredient(Ingredient ingredient)
         {
             recipeIngredients.Add(ingredient);
@@ -83,7 +85,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.WriteLine("");
             Console.WriteLine("How many ingredients do you need to make: " + recipeName + "?");
             int numIngredients = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i <= numIngredients; i++)
+            for (int i = 0; i < numIngredients; i++)
             {
                 Console.Clear();
                 Console.WriteLine("Enter the name of ingredient {0}: ", i + 1);
@@ -119,32 +121,33 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             {
                 group = "Starchy foods";
             }
-            if (choice == "2")
+            else if (choice == "2")
             {
                 group = "Vegetables/fruits";
             }
-            if (choice == "3")
+            else if (choice == "3")
             {
                 group = "Meat";
             }
-            if (choice == "4")
+           else if (choice == "4")
             {
                 group = "Dairy products";
             }
-            if (choice == "5")
+            else if (choice == "5")
             {
                 group = "Fat/oils";
             }
-            if (choice == "6")
+            else if (choice == "6")
             {
                 group = "Dry beans/peas/soya";
             }
-            if (choice == "7")
+           else  if (choice == "7")
             {
                 group = "Water";
             }
             else {
                 Console.Clear();
+                Console.WriteLine("Select one of the options below: ");
                 GetFoodGroup(name);
             }
             return group;
@@ -158,7 +161,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             int numSteps = Convert.ToInt32(Console.ReadLine());
             int stepNumber;
             string description = null;
-            for (int i = 0; i<= numSteps; i++)
+            for (int i = 0; i< numSteps; i++)
             {
                 stepNumber = i + 1;
 
@@ -169,32 +172,32 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 AddStep(step);
             }
         }
-        public void GetRecipe()
+        public void GetRecipeDetails()
         {
             Console.Clear();
-            Console.WriteLine("Create new recipe");
-            Console.WriteLine();
-            Console.WriteLine("Enter the name of this recipe: ");
-            string recipeName = Console.ReadLine();
-
+            
             GetIngredients(recipeName);
             GetSteps(recipeName);
 
-            Console.WriteLine("Recipe Created");
 
+            
 
         }
         public void DisplayRecipeDetails()
         {
+            
             Console.Clear();
             Console.WriteLine("Recipe : {0}", recipeName);
             Console.WriteLine();
             Console.WriteLine("Ingredients: ");
+            Console.WriteLine();
             foreach (var ingredient in recipeIngredients)
             {
-                Console.WriteLine("Ingredient: " + ingredient.ingredientName + ingredient.ingredientQuantity + ingredient.unitOfMeasure + "Food group: " + ingredient.ingredientgrouping + "Calories: " + ingredient.ingredientCalories);
+                Console.WriteLine(ingredient.ingredientName + " " + ingredient.ingredientQuantity + " " + ingredient.unitOfMeasure + " " + "Food group: " + ingredient.ingredientgrouping + " " + "Calories: " + ingredient.ingredientCalories);
             }
+            Console.WriteLine();
             Console.WriteLine("Steps: ");
+            Console.WriteLine();
             foreach (var step in recipeSteps)
             {
                 Console.WriteLine("Step " + step.stepNumber + ": " + step.stepDescription);
@@ -207,7 +210,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
     }
 }
-    internal class Recipe
+ /*   internal class Recipe
     {
         //Creating all the neccassary variables and arrays needed for the methods that follow
         Dictionary<string, string> ingredients = new Dictionary<string, string>();//Stores the ingredient name and unit of measurement
@@ -558,6 +561,6 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
 
         }
-    }
-} 
+    }*/
+
 //------------------------------------------------------------END OF FILE---------------------------------------------------------------------

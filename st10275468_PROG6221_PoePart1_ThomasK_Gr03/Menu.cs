@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 {
-    internal class Menu : Recipe
-    {   
+    public class Menu 
+    {
+       
+        public List<Recipe> Recipes;
+        public Menu()
+        {
+            Recipes = new List<Recipe>();
+        }
         //A string array that holds all the options for the menu in the application
         string[] MenuOptions = {"1..Create recipe","2..Display recipe","3..Scale recipe","4..Reset scale","5..Delete recipe","6..Exit" };
               
@@ -18,6 +24,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         /// </summary>
         public void menu()  
         {
+           
             Console.WriteLine();
             Console.WriteLine("--------RECIPE APPLICATION---------");   //Heading of the page
             Console.WriteLine();
@@ -35,37 +42,39 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             //After the methods have run it takes the user back to the menu
 
             if (choice == "1")  //If the user chooses option 1, it will call a method GetRecipe which will allow them to create a recipe
-            {   
-                GetRecipe();
+            {
+                Console.Clear(); 
+                AddRecipe();
                 menu();
                 
             }
             else if (choice == "2") //If the user chooses option 2, it will call a method DisplayRecipe which will Display the ingredients
                                     //and steps in a neat format
             {
-                DisplayRecipe();
                 Console.Clear();
+               DisplayRecipes();
+                
                 menu();
             }
             else if (choice == "3") //If the user chooses option 3, it will call a method ScaleRecipe which will allow them to scale
                                     //the recipe quantities
             {
                 Console.Clear();
-                ScaleRecipe();
+              //  ScaleRecipe();
                 menu();
             }
             else if(choice == "4") //If the user chooses option 4, it will call a method ResetQuantity which will
                                    //allow them to reset the scaled quantities to its original values
             {
                 Console.Clear();
-                ResetQuantity();
+               // ResetQuantity();
                 menu();
             }
             else if (choice == "5") //If the user chooses option 5, it will call a method ClearRecipe which will allow the user to
                                     //delete the recipe if wanted.
             {
                 Console.Clear();
-                ClearRecipe();
+              //  ClearRecipe();
                 menu();
             }
             else if (choice == "6") ////If the user chooses option 6, it will allow them to exit the program
@@ -84,6 +93,58 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 Console.ForegroundColor = ConsoleColor.Black;
                 menu();
             }
+
+        }
+        public void AddRecipe()
+        {
+            
+            Console.WriteLine("--------Create Recipe---------");
+            Console.WriteLine();
+            Console.WriteLine("Enter the name of this recipe: ");
+            string recipeName = Console.ReadLine();
+
+            Recipe recipe = new Recipe(recipeName);
+            recipe.GetRecipeDetails();
+
+            Recipes.Add(recipe);
+            
+        }
+        public void DisplayRecipes()
+        {
+            Console.Clear();
+            if (Recipes.Count == 0)
+            {
+                Console.WriteLine("No recipes added yet");
+                Console.ReadLine();
+                return;
+            }
+            
+            Console.WriteLine("---------Recipes----------");
+            int j = 1;
+                foreach(var recipe in Recipes) {
+                
+                Console.WriteLine("Recipe " + j + ": " + recipe.recipeName);
+               
+                j++;
+                
+            }
+            Console.WriteLine("Choose a recipe to display: ");
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= Recipes.Count)
+                if (Recipes.Count >= choice)
+            {
+                    Recipes[choice-1].DisplayRecipeDetails();
+                
+            }
+            else 
+            {
+                
+                Console.WriteLine("Invalid choice");
+                DisplayRecipes();
+            }
+            
+               
+            
+
 
         }
     }
