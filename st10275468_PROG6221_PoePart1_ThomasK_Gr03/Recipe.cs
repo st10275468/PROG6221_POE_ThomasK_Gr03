@@ -101,6 +101,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 string group = GetFoodGroup(name);
 
                 Ingredient ingredient = new Ingredient(name,quantity,unit,group, calories);
+                AddIngredient(ingredient);
             }
 
         }
@@ -149,11 +150,11 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             return group;
         }
         
-        public void GetSteps()
+        public void GetSteps(string name)
         {
             Console.Clear();
             Console.WriteLine("");
-            Console.WriteLine("How many steps in the recipe: " + recipeName + "?");
+            Console.WriteLine("How many steps in the recipe: " + name + "?");
             int numSteps = Convert.ToInt32(Console.ReadLine());
             int stepNumber;
             string description = null;
@@ -165,10 +166,41 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 description = Console.ReadLine();
 
                 Step step = new Step(description,stepNumber);
+                AddStep(step);
             }
         }
-     
+        public void GetRecipe()
+        {
+            Console.Clear();
+            Console.WriteLine("Create new recipe");
+            Console.WriteLine();
+            Console.WriteLine("Enter the name of this recipe: ");
+            string recipeName = Console.ReadLine();
 
+            GetIngredients(recipeName);
+            GetSteps(recipeName);
+
+            Console.WriteLine("Recipe Created");
+
+
+        }
+        public void DisplayRecipeDetails()
+        {
+            Console.Clear();
+            Console.WriteLine("Recipe : {0}", recipeName);
+            Console.WriteLine();
+            Console.WriteLine("Ingredients: ");
+            foreach (var ingredient in recipeIngredients)
+            {
+                Console.WriteLine("Ingredient: " + ingredient.ingredientName + ingredient.ingredientQuantity + ingredient.unitOfMeasure + "Food group: " + ingredient.ingredientgrouping + "Calories: " + ingredient.ingredientCalories);
+            }
+            Console.WriteLine("Steps: ");
+            foreach (var step in recipeSteps)
+            {
+                Console.WriteLine("Step " + step.stepNumber + ": " + step.stepDescription);
+            }
+
+        }
 
 
 
