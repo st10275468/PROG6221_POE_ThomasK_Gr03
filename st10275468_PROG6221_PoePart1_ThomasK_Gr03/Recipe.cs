@@ -77,6 +77,82 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
       //  public double CalculateCalories() 
         //{ return 0; }
 
+        public void GetIngredients(string recipeName)
+        {
+
+            Console.WriteLine("");
+            Console.WriteLine("How many ingredients do you need to make: " + recipeName + "?");
+            int numIngredients = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i <= numIngredients; i++)
+            {
+                Console.Clear();
+                Console.WriteLine("Enter the name of ingredient {0}: ", i + 1);
+                string name = Console.ReadLine();
+
+                Console.WriteLine("Enter the quantity of {0}: ", name);
+                double quantity = double.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter the unit of measurement of used to measure {0}: ", name);
+                string unit = Console.ReadLine();
+
+                Console.WriteLine("Enter the amount of calories in {0}: ", name);
+                double calories = double.Parse(Console.ReadLine());
+
+                string group = GetFoodGroup(name);
+
+                Ingredient ingredient = new Ingredient(name,quantity,unit,group, calories);
+            }
+
+        }
+        public string GetFoodGroup(string name)
+        {
+            string group = null;
+            Console.WriteLine("Select what food group {0} belongs to", name);
+            string[] FoodGroup = {"1..Starchy foods", "2..Vegetables/fruits","3..Meat","4..Dairy products","5..Fats/oils","6..Dry Beans/peas/soya","7..Water" };
+            for (int i = 0; i <= 6; i++)
+            {
+                Console.WriteLine(FoodGroup[i]);
+            }
+            string choice = Console.ReadLine();
+            if (choice == "1")
+            {
+                group = "Starchy foods";
+            }
+            if (choice == "2")
+            {
+                group = "Vegetables/fruits";
+            }
+            if (choice == "3")
+            {
+                group = "Meat";
+            }
+            if (choice == "4")
+            {
+                group = "Dairy products";
+            }
+            if (choice == "5")
+            {
+                group = "Fat/oils";
+            }
+            if (choice == "6")
+            {
+                group = "Dry beans/peas/soya";
+            }
+            if (choice == "7")
+            {
+                group = "Water";
+            }
+            else {
+                Console.Clear();
+                GetFoodGroup(name);
+            }
+            return group;
+        }
+        
+        public void GetSteps()
+        {
+
+        }
         public string GetRecipe()
         {
             
