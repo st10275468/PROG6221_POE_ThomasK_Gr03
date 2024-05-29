@@ -10,14 +10,15 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 {
     public class Ingredient
     {
-        public string ingredientName {  get; set; }
+        public string ingredientName { get; set; }
         public double ingredientQuantity { get; set; }
         public string unitOfMeasure { get; set; }
         public string ingredientgrouping { get; set; }
         public double ingredientCalories { get; set; }
-       
-        public Ingredient(string fName, double fQuantity, string fUnit, string fGroup, double fCalories) { 
-            
+
+        public Ingredient(string fName, double fQuantity, string fUnit, string fGroup, double fCalories)
+        {
+
             ingredientName = fName;
             ingredientQuantity = fQuantity;
             unitOfMeasure = fUnit;
@@ -26,7 +27,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         }
         public string GetIngredient()
         {
-            string ingredient = ingredientQuantity + unitOfMeasure + "'s" + ingredientName +". Food group: " + ingredientgrouping + ". Calories: " + ingredientCalories;
+            string ingredient = ingredientQuantity + unitOfMeasure + "'s" + ingredientName + ". Food group: " + ingredientgrouping + ". Calories: " + ingredientCalories;
             return ingredient;
         }
     }
@@ -38,18 +39,56 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         public string stepDescription { get; set; }
         public int stepNumber { get; set; }
 
-        public Step(string fStepDescription, int fStepNumber) {
+        public Step(string fStepDescription, int fStepNumber)
+        {
             stepDescription = fStepDescription;
             stepNumber = fStepNumber;
 
-                }
+        }
         public string GetStep()
         {
             string step = "Step " + stepNumber + ": " + stepDescription;
             return step;
-        } 
+        }
 
     }
+
+    public class Recipe
+    {
+        public string recipeName {get; set;}
+        public List<Ingredient> recipeIngredients { get; set; }
+        public List<Step> recipeSteps { get; set; }
+
+        public Recipe(string fRecipeName)
+        {
+            recipeName = fRecipeName;
+            recipeIngredients = new List<Ingredient>();
+            recipeSteps = new List<Step>();
+        }
+        public void AddIngredient(Ingredient ingredient)
+        {
+            recipeIngredients.Add(ingredient);
+        }
+        public void AddStep(Step step) {
+        
+            recipeSteps.Add(step);
+        }
+
+      //  public double CalculateCalories() 
+        //{ return 0; }
+
+        public string GetRecipe()
+        {
+            
+
+        }
+
+
+
+
+
+    }
+}
     internal class Recipe
     {
         //Creating all the neccassary variables and arrays needed for the methods that follow
@@ -402,5 +441,5 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
         }
     }
-}
+} 
 //------------------------------------------------------------END OF FILE---------------------------------------------------------------------
