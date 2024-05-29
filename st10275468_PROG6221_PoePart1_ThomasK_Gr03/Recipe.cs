@@ -1,11 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Versioning;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 {
+    public class Ingredient
+    {
+        public string ingredientName {  get; set; }
+        public double ingredientQuantity { get; set; }
+        public string unitOfMeasure { get; set; }
+        public string ingredientgrouping { get; set; }
+        public double ingredientCalories { get; set; }
+       
+        public Ingredient(string fName, double fQuantity, string fUnit, string fGroup, double fCalories) { 
+            
+            ingredientName = fName;
+            ingredientQuantity = fQuantity;
+            unitOfMeasure = fUnit;
+            ingredientgrouping = fGroup;
+            ingredientCalories = fCalories;
+        }
+        public string GetIngredient()
+        {
+            string ingredient = ingredientQuantity + unitOfMeasure + "'s" + ingredientName +". Food group: " + ingredientgrouping + ". Calories: " + ingredientCalories;
+            return ingredient;
+        }
+    }
+
+
+
+    public class Step
+    {
+        public string stepDescription { get; set; }
+        public int stepNumber { get; set; }
+
+        public Step(string fStepDescription, int fStepNumber) {
+            stepDescription = fStepDescription;
+            stepNumber = fStepNumber;
+
+                }
+        public string GetStep()
+        {
+            string step = "Step " + stepNumber + ": " + stepDescription;
+            return step;
+        } 
+
+    }
     internal class Recipe
     {
         //Creating all the neccassary variables and arrays needed for the methods that follow
