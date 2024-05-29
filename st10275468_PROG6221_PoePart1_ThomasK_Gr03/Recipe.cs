@@ -151,13 +151,23 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         
         public void GetSteps()
         {
+            Console.Clear();
+            Console.WriteLine("");
+            Console.WriteLine("How many steps in the recipe: " + recipeName + "?");
+            int numSteps = Convert.ToInt32(Console.ReadLine());
+            int stepNumber;
+            string description = null;
+            for (int i = 0; i<= numSteps; i++)
+            {
+                stepNumber = i + 1;
 
-        }
-        public string GetRecipe()
-        {
-            
+                Console.WriteLine("Enter the description of step {0}: ", stepNumber);
+                description = Console.ReadLine();
 
+                Step step = new Step(description,stepNumber);
+            }
         }
+     
 
 
 
