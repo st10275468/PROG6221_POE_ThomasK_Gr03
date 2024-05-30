@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "st10275468_PROG6221_PoePart1_ThomasK_Gr03", "st10275468_PROG6221_PoePart1_ThomasK_Gr03\st10275468_PROG6221_PoePart1_ThomasK_Gr03.csproj", "{A8974208-CEC2-464E-A064-9B3CB59DEDA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "st10275468_UnitTests", "st10275468_UnitTests\st10275468_UnitTests.csproj", "{BA774DB0-AD67-48BE-896C-74DC8D37E636}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A8974208-CEC2-464E-A064-9B3CB59DEDA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8974208-CEC2-464E-A064-9B3CB59DEDA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8974208-CEC2-464E-A064-9B3CB59DEDA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA774DB0-AD67-48BE-896C-74DC8D37E636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA774DB0-AD67-48BE-896C-74DC8D37E636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA774DB0-AD67-48BE-896C-74DC8D37E636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA774DB0-AD67-48BE-896C-74DC8D37E636}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
