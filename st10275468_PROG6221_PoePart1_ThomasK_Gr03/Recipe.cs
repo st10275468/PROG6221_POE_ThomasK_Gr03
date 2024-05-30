@@ -69,12 +69,14 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         }
         public string recipeName { get; set; }
         public List<Ingredient> recipeIngredients { get; set; }
+        public List<Ingredient> recipeIngredientsBackup { get; set; }
         public List<Step> recipeSteps { get; set; }
 
         public Recipe(string fRecipeName)
         {
             this.recipeName = fRecipeName;
             recipeIngredients = new List<Ingredient>();
+            recipeIngredientsBackup = new List<Ingredient>();
             recipeSteps = new List<Step>();
         }
 
@@ -82,6 +84,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         public void AddIngredient(Ingredient ingredient)
         {
             recipeIngredients.Add(ingredient);
+            recipeIngredientsBackup.Add(new Ingredient(ingredient.ingredientName, ingredient.ingredientQuantity, ingredient.unitOfMeasure, ingredient.ingredientgrouping, ingredient.ingredientCalories));
         }
         public void AddStep(Step step)
         {
@@ -276,8 +279,20 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 OnExceededCalories();
             }
         }
+        public void ResetQuantity()
+        {
+            for (int i = 0; i < recipeIngredients.Count; i++)
+            {
+                recipeIngredients[i].ingredientQuantity = recipeIngredientsBackup[i].ingredientQuantity;
+                recipeIngredients[i].ingredientCalories = recipeIngredientsBackup[i].ingredientCalories;
+            }
+            Console.WriteLine("All recipe values have been reset");
 
-}
+
+        }
+
+
+    }
 
 
 
