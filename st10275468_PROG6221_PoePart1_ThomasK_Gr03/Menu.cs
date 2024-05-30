@@ -83,7 +83,10 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                                     //delete the recipe if wanted.
             {
                 Console.Clear();
-                //  ClearRecipe();
+                DeleteRecipe();
+                Console.WriteLine("Press enter to go back to the menu: ");
+                Console.ReadKey();
+                Console.Clear();
                 menu();
             }
             else if (choice == "6") ////If the user chooses option 6, it will allow them to exit the program
@@ -228,6 +231,43 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                     ResetRecipeChoice();
                 }
         
+
+        }
+        public void DeleteRecipe()
+        {
+            
+            if (Recipes.Count == 0)
+            {
+                Console.WriteLine("No recipes found to delete");
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("---------Recipes----------");
+            var sortedRecipes = Recipes.OrderBy(r => r.recipeName).ToList();
+            int j = 1;
+            foreach (var recipe in sortedRecipes)
+            {
+
+                Console.WriteLine("Recipe " + j + ": " + recipe.recipeName);
+
+                j++;
+
+            }
+            Console.WriteLine("Choose a recipe to delete: ");
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= Recipes.Count)
+                if (Recipes.Count >= choice)
+                {
+                    Recipes.RemoveAt(choice - 1);
+                    Console.WriteLine("Successfully deleted recipe");
+
+                }
+                else
+                {
+
+                    Console.WriteLine("Invalid choice");
+                    RecipeScaleChoice();
+                }
 
         }
         public void Recipe_ExceededCalories(object sender, EventArgs e)
