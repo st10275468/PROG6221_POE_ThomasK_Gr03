@@ -7,7 +7,7 @@ namespace st10275468_UnitTests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestTotalCalories()
+        public void TestTotalCalories() //Unit test created to test my calculations on the total calories of each ingredient
         {
             var recipe = new Recipe("Test");
 
