@@ -153,14 +153,12 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 else
                 {
 
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid choice");
+                    Console.ForegroundColor = ConsoleColor.Black;
                     DisplayRecipes();
 
                 }
-
-
-
-
 
         }
         public void RecipeScaleChoice()
@@ -193,7 +191,9 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 else
                 {
 
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid choice");
+                    Console.ForegroundColor = ConsoleColor.Black;
                     RecipeScaleChoice();
                 }
         }
@@ -227,11 +227,12 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 else
                 {
 
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid choice");
+                    Console.ForegroundColor = ConsoleColor.Black;
                     ResetRecipeChoice();
                 }
-        
-
+            
         }
         public void DeleteRecipe()
         {
@@ -259,13 +260,15 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                 if (Recipes.Count >= choice)
                 {
                     Recipes.RemoveAt(choice - 1);
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Successfully deleted recipe");
-
+                    Console.ForegroundColor = ConsoleColor.Black;
                 }
                 else
                 {
-
+                    Console.ForegroundColor= ConsoleColor.Red;
                     Console.WriteLine("Invalid choice");
+                    Console.ForegroundColor = ConsoleColor.Black;
                     RecipeScaleChoice();
                 }
 
@@ -273,7 +276,9 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         public void Recipe_ExceededCalories(object sender, EventArgs e)
         {
             Console.Beep();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Total calories in this recipe exceed 300");
+            Console.ForegroundColor = ConsoleColor.Black;
         }
     }
 }
