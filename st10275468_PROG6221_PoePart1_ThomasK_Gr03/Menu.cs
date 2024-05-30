@@ -52,15 +52,18 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
                                     //and steps in a neat format
             {
                 Console.Clear();
+               
                DisplayRecipes();
-                
+                Console.WriteLine("Press enter to go back to the menu: ");
+                Console.ReadKey();
+                Console.Clear();
                 menu();
             }
             else if (choice == "3") //If the user chooses option 3, it will call a method ScaleRecipe which will allow them to scale
                                     //the recipe quantities
             {
                 Console.Clear();
-              //  ScaleRecipe();
+              RecipeScaleChoice();
                 menu();
             }
             else if(choice == "4") //If the user chooses option 4, it will call a method ResetQuantity which will
@@ -105,12 +108,13 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
             Recipe recipe = new Recipe(recipeName);
             recipe.GetRecipeDetails();
-
+            recipe.ExceededCalories += Recipe_ExceededCalories;
             Recipes.Add(recipe);
             
         }
         public void DisplayRecipes()
         {
+            
             Console.Clear();
             if (Recipes.Count == 0)
             {
@@ -120,8 +124,9 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             }
             
             Console.WriteLine("---------Recipes----------");
+            var sortedRecipes = Recipes.OrderBy(r => r.recipeName).ToList();
             int j = 1;
-                foreach(var recipe in Recipes) {
+                foreach(var recipe in sortedRecipes) {
                 
                 Console.WriteLine("Recipe " + j + ": " + recipe.recipeName);
                
@@ -132,9 +137,9 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= Recipes.Count)
                 if (Recipes.Count >= choice)
             {
-                    Recipes[choice-1].DisplayRecipeDetails();
-                
-            }
+                    sortedRecipes[choice - 1].DisplayRecipeDetails();
+
+                }
             else 
             {
                 
@@ -146,6 +151,45 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             
 
 
+        }
+        public void RecipeScaleChoice()
+        {
+            if (Recipes.Count == 0)
+            {
+                Console.WriteLine("No recipes found to scale");
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("---------Recipes----------");
+            var sortedRecipes = Recipes.OrderBy(r => r.recipeName).ToList();
+            int j = 1;
+            foreach (var recipe in sortedRecipes)
+            {
+
+                Console.WriteLine("Recipe " + j + ": " + recipe.recipeName);
+
+                j++;
+
+            }
+            Console.WriteLine("Choose a recipe to scale: ");
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= Recipes.Count)
+                if (Recipes.Count >= choice)
+                {
+                    sortedRecipes[choice - 1].ScaleRecipe();
+
+                }
+                else
+                {
+
+                    Console.WriteLine("Invalid choice");
+                    RecipeScaleChoice();
+                }
+        }
+        public void Recipe_ExceededCalories(object sender, EventArgs e)
+        {
+            Console.Beep();
+            Console.WriteLine("Total calories in this recipe exceed 300");
         }
     }
 }

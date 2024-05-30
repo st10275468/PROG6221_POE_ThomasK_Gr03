@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Versioning;
 using System.Security.Policy;
 using System.Text;
@@ -8,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 {
+    public delegate void ExceededCalories(object sender, EventArgs e);
+
     public class Ingredient
     {
+
         public string ingredientName { get; set; }
         public double ingredientQuantity { get; set; }
         public string unitOfMeasure { get; set; }
@@ -55,7 +59,15 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
     public class Recipe
     {
-        public string recipeName {get; set;}
+        public event ExceededCalories ExceededCalories;
+        protected virtual void OnExceededCalories()
+        {
+            if (ExceededCalories != null)
+            {
+                ExceededCalories(this, EventArgs.Empty);
+            }
+        }
+        public string recipeName { get; set; }
         public List<Ingredient> recipeIngredients { get; set; }
         public List<Step> recipeSteps { get; set; }
 
@@ -66,17 +78,18 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             recipeSteps = new List<Step>();
         }
 
-        
+
         public void AddIngredient(Ingredient ingredient)
         {
             recipeIngredients.Add(ingredient);
         }
-        public void AddStep(Step step) {
-        
+        public void AddStep(Step step)
+        {
+
             recipeSteps.Add(step);
         }
 
-      //  public double CalculateCalories() 
+        //  public double CalculateCalories() 
         //{ return 0; }
 
         public void GetIngredients(string recipeName)
@@ -102,7 +115,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
 
                 string group = GetFoodGroup(name);
 
-                Ingredient ingredient = new Ingredient(name,quantity,unit,group, calories);
+                Ingredient ingredient = new Ingredient(name, quantity, unit, group, calories);
                 AddIngredient(ingredient);
             }
 
@@ -111,7 +124,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
         {
             string group = null;
             Console.WriteLine("Select what food group {0} belongs to", name);
-            string[] FoodGroup = {"1..Starchy foods", "2..Vegetables/fruits","3..Meat","4..Dairy products","5..Fats/oils","6..Dry Beans/peas/soya","7..Water" };
+            string[] FoodGroup = { "1..Starchy foods", "2..Vegetables/fruits", "3..Meat", "4..Dairy products", "5..Fats/oils", "6..Dry Beans/peas/soya", "7..Water" };
             for (int i = 0; i <= 6; i++)
             {
                 Console.WriteLine(FoodGroup[i]);
@@ -129,7 +142,7 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             {
                 group = "Meat";
             }
-           else if (choice == "4")
+            else if (choice == "4")
             {
                 group = "Dairy products";
             }
@@ -141,18 +154,19 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             {
                 group = "Dry beans/peas/soya";
             }
-           else  if (choice == "7")
+            else if (choice == "7")
             {
                 group = "Water";
             }
-            else {
+            else
+            {
                 Console.Clear();
                 Console.WriteLine("Select one of the options below: ");
                 GetFoodGroup(name);
             }
             return group;
         }
-        
+
         public void GetSteps(string name)
         {
             Console.Clear();
@@ -161,31 +175,31 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             int numSteps = Convert.ToInt32(Console.ReadLine());
             int stepNumber;
             string description = null;
-            for (int i = 0; i< numSteps; i++)
+            for (int i = 0; i < numSteps; i++)
             {
                 stepNumber = i + 1;
 
                 Console.WriteLine("Enter the description of step {0}: ", stepNumber);
                 description = Console.ReadLine();
 
-                Step step = new Step(description,stepNumber);
+                Step step = new Step(description, stepNumber);
                 AddStep(step);
             }
         }
         public void GetRecipeDetails()
         {
             Console.Clear();
-            
+
             GetIngredients(recipeName);
             GetSteps(recipeName);
 
 
-            
+
 
         }
         public void DisplayRecipeDetails()
         {
-            
+            double totalCalories = 0;
             Console.Clear();
             Console.WriteLine("Recipe : {0}", recipeName);
             Console.WriteLine();
@@ -193,8 +207,10 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.WriteLine();
             foreach (var ingredient in recipeIngredients)
             {
-                Console.WriteLine(ingredient.ingredientName + " " + ingredient.ingredientQuantity + " " + ingredient.unitOfMeasure + " " + "Food group: " + ingredient.ingredientgrouping + " " + "Calories: " + ingredient.ingredientCalories);
+                Console.WriteLine(" > " + ingredient.ingredientName + " " + ingredient.ingredientQuantity + " " + ingredient.unitOfMeasure + ". " + "Food group: " + ingredient.ingredientgrouping + ".  " + "Calories: " + ingredient.ingredientCalories);
+                totalCalories = totalCalories + ingredient.ingredientCalories;
             }
+            Console.WriteLine("Total calories: " + totalCalories);
             Console.WriteLine();
             Console.WriteLine("Steps: ");
             Console.WriteLine();
@@ -202,9 +218,143 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             {
                 Console.WriteLine("Step " + step.stepNumber + ": " + step.stepDescription);
             }
+            if (totalCalories > 300)
+            {
+                OnExceededCalories();
+            }
 
         }
 
+        public void ScaleRecipe()
+        {
+            string[] scaleOptions = { "1..Half(0.5)", "2..Double(2)", "3..Triple(3)" };
+
+
+            double scale = 0;
+            Console.WriteLine("Choose a scale below: ");
+            Console.WriteLine();
+            for (int i = 0; i < 3; i++)//Using a for loop to display the scale options array
+            {
+                Console.WriteLine(scaleOptions[i]);
+            }
+
+
+
+            string choice = Console.ReadLine();
+            if (choice == "1") //If their choice is 1, the recipe will be scaled by 0.5
+            {
+                scale = 0.5;
+            }
+
+            else if (choice == "2")
+            {
+                scale = 2;
+            }
+            else if (choice == "3")
+            {
+                scale = 3;
+            }
+            else
+            {
+                Console.WriteLine("Invalid option");
+                ScaleRecipe();
+            }
+            foreach (var ingredient in recipeIngredients)
+            {
+                ingredient.ingredientQuantity = ingredient.ingredientQuantity * scale;
+                ingredient.ingredientCalories = ingredient.ingredientCalories * scale;
+
+            }
+            Console.WriteLine("Recipe scaled successfully.");
+
+        }
+        public void CaloriesLimit()
+        {
+            double totalCalories = recipeIngredients.Sum(i => i.ingredientCalories);
+            if (totalCalories > 300)
+            {
+                OnExceededCalories();
+            }
+        }
+
+}
+
+
+
+
+
+            //Promting the user to choose what they want to scale the recipe by
+
+
+            //Getting the input from the user
+        }
+    
+
+
+
+/*Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Successfully scaled recipe quantities"); //Prompting the user that the scale was successfull
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine();
+                Console.WriteLine("Press enter to go back to the menu");
+                Console.ReadLine();
+                Console.Clear();
+
+            }
+        }
+    }
+
+           /* else if (choice == "2") //If their choice is 2, the recipe will be scaled by 2 times
+            {
+                for (int i = 0; i < numIngredients; i++) //Using a for loop to iterate through ingredientQuantity array and times 
+                {                                         //all the values by 2
+
+                    ingredientQuantity[i] = ingredientQuantity[i] * 2;
+                }
+
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Successfully scaled recipe quantities"); //Prompting the user that the scale was successfull
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine();
+                Console.WriteLine("Press enter to go back to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+            else if (choice == "3")//If their choice is 3, the recipe will be scaled by 3 times
+            {
+                for (int i = 0; i < numIngredients; i++)//Using a for loop to iterate through ingredientQuantity array and times 
+                                                        //all the values by 3
+                {
+                    ingredientQuantity[i] = ingredientQuantity[i] * 3;
+
+                }
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Successfully scaled recipe quantities");//Prompting the user that the scale was successfull
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine();
+                Console.WriteLine("Press enter to go back to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+            else //Else if they did not input a valid option it will keep prompting them for another
+            {
+
+                Console.Beep();
+                Console.Clear();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("------INVALID OPTION/FORMAT------");
+                Console.ForegroundColor = ConsoleColor.Black;
+                ScaleRecipe();
+
+            }
+        }
 
 
 
@@ -347,46 +497,6 @@ namespace st10275468_PROG6221_PoePart1_ThomasK_Gr03
             Console.ForegroundColor = ConsoleColor.Black;
             
         }
-
-        /// <summary>
-        /// The DisplayRecipe method will output all the data that was inputted above into a neat format on the page that makes
-        /// the recipe easy to understand and follow.
-        /// </summary>
-        public void DisplayRecipe()
-        {
-            Console.Clear();
-            Console.WriteLine();
-            Console.WriteLine("-----RECIPE DETAILS-----"); 
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("---Ingredients---");//All the ingredients names, quantities and unit of measurement will be displayed
-            Console.WriteLine();                    //under this heading
-
-            for (int i = 0; i < numIngredients; i++)    //Using a for loop to iterate through the dictonary and array and output
-                {                                       //the data in a neat format
-
-                //Learnt to get the values from the dictionary at: (VanBuskirk, A., 2023. How to iterate over a dictionary in C#?. [Online] 
-               // Available at: https://blog.wordbot.io/tech/how-to-iterate-over-a-dictionary-in-c/#:~:text=Value)%3B%20%7D-,In%20this%20example%2C%20we%20define%20a%20Dictionary%3Cstring%2C%20int,out%20its%20key%20and%20value.
-               // [Accessed 12 April 2024].)
-                 KeyValuePair<string, string> item = ingredients.ElementAt(i); //Getting the input from the dictionary
-                Console.WriteLine("Ingredient {0}: {1} {2} of {3}", i+1, ingredientQuantity[i], item.Value, item.Key);
-                }
-            Console.ForegroundColor= ConsoleColor.Magenta;
-            Console.WriteLine() ;
-            Console.WriteLine("---Steps---");//The steps and step desctriptions will be displayed under this heading
-            Console.WriteLine();
-
-            for (int i = 0; i < steps; i++) //Using a for loop to iterate through the description array and display it in a neat format
-                {
-                Console.WriteLine("Step {0}: {1}", i+1, stepDescription[i]);
-                }
-
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("Press enter to go back to the menu"); 
-            Console.ReadLine();
-            
-         }
 
         
         /// <summary>
